@@ -2,7 +2,11 @@ import React from "react";
 
 const AddRandom = () => {
   return (
-    <button type="button" class="btn btn-success flex-fill" onClick={() => {}}>
+    <button
+      type="button"
+      className="btn btn-success flex-fill"
+      onClick={() => {}}
+    >
       Add Random Contact
     </button>
   );

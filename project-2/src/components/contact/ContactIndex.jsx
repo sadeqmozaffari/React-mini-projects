@@ -33,9 +33,9 @@ const ContactIndex = () => {
     <div className="container  box-content d-flex flex-column text-white">
       <div className="d-flex  gap-4 mb-3 w-100">
         <AddRandomContact />
-        <RemoveAllContacts />
+        <RemoveAllContacts  setContactList={setContactList} />
       </div>
-      <AddContact />
+      <AddContact contactList={contactList} setContactList={setContactList} />
       <FavoirtContact
         contacts={contactList.filter((item) => item.isFavorit === true)}
         setContactList={setContactList}
