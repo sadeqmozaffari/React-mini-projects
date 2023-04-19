@@ -29,20 +29,38 @@ const ContactIndex = () => {
       isFavorit: true,
     },
   ]);
+  const ToggleFavorite = (id) => {
+    const new_update = contactList.map((item) => {
+      return item.id === id ? { ...item, isFavorit: !item.isFavorit } : item;
+    });
+    console.log(id);
+    console.log(new_update);
+    setContactList(new_update);
+  };
+  const deleteFun = (id) => {
+    const new_update = contactList.filter((item) => {
+      return item.id !== id && item;
+    });
+    setContactList(new_update);
+  };
   return (
     <div className="container  box-content d-flex flex-column text-white">
       <div className="d-flex  gap-4 mb-3 w-100">
         <AddRandomContact />
-        <RemoveAllContacts  setContactList={setContactList} />
+        <RemoveAllContacts setContactList={setContactList} />
       </div>
       <AddContact contactList={contactList} setContactList={setContactList} />
       <FavoirtContact
         contacts={contactList.filter((item) => item.isFavorit === true)}
         setContactList={setContactList}
+        ToggleFavorite={ToggleFavorite}
+        deleteFun={deleteFun}
       />
       <Contacts
         contacts={contactList.filter((item) => item.isFavorit !== true)}
         setContactList={setContactList}
+        ToggleFavorite={ToggleFavorite}
+        deleteFun={deleteFun}
       />
     </div>
   );

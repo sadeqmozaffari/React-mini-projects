@@ -1,6 +1,7 @@
 import React from "react";
+import FavoriteBtn from "./FavoriteBtn";
 
-const Contacts = ({ contacts, setContactList }) => {
+const Contacts = ({ contacts, setContactList, ToggleFavorite, deleteFun }) => {
   return (
     <div className="favorit d-flex flex-column w-100 p-4 border-gray mt-2 ">
       <h5 className="p2">Other Contacts</h5>
@@ -26,20 +27,11 @@ const Contacts = ({ contacts, setContactList }) => {
               </div>
             </div>
             <div className="d-flex justify-content-evenly  w-100 ">
-              <div className="d-flex flex-column">
-                <button className="btn btn-secondary" onClick={() => {}}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-star"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-                  </svg>
-                </button>
-              </div>
+              <FavoriteBtn
+                att={item.isFavorit ? "warning" : "secondary"}
+                id={item.id}
+                ToggleFavorite={ToggleFavorite}
+              />
               <div className="d-flex">
                 <button className="btn btn-primary mx-2" onClick={() => {}}>
                   <svg
@@ -57,7 +49,12 @@ const Contacts = ({ contacts, setContactList }) => {
                     />
                   </svg>
                 </button>
-                <button className="btn btn-danger" onClick={() => {}}>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => {
+                    deleteFun(item.id);
+                  }}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
