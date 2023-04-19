@@ -33,8 +33,6 @@ const ContactIndex = () => {
     const new_update = contactList.map((item) => {
       return item.id === id ? { ...item, isFavorit: !item.isFavorit } : item;
     });
-    console.log(id);
-    console.log(new_update);
     setContactList(new_update);
   };
   const deleteFun = (id) => {
