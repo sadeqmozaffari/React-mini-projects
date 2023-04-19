@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import AddContact from "./AddContact";
-import FavoirtContact from "./FavoirtContact";
 import Contacts from "./Contacts";
 import AddRandomContact from "./AddRandom";
 import RemoveAllContacts from "./RemoveAllContacts";
@@ -41,25 +40,43 @@ const ContactIndex = () => {
     });
     setContactList(new_update);
   };
+  const AddRandom = (NC) => {
+  
+    let lastId = 0;
+    if (contactList.length === 0) {
+      lastId = 1;
+    } else {
+      lastId = contactList.reverse()[0].id;
+    }
+    const newContact = { name:NC.name, email:NC.email, phone:NC.phone, isFavorite: false, id: lastId };
+    setContactList(contactList.concat(newContact));
+  
+};
   return (
     <div className="container  box-content d-flex flex-column text-white">
       <div className="d-flex  gap-4 mb-3 w-100">
-        <AddRandomContact />
+        <AddRandomContact AddRandom={AddRandom} />
         <RemoveAllContacts setContactList={setContactList} />
       </div>
       <AddContact contactList={contactList} setContactList={setContactList} />
-      <FavoirtContact
-        contacts={contactList.filter((item) => item.isFavorit === true)}
-        setContactList={setContactList}
-        ToggleFavorite={ToggleFavorite}
-        deleteFun={deleteFun}
-      />
-      <Contacts
-        contacts={contactList.filter((item) => item.isFavorit !== true)}
-        setContactList={setContactList}
-        ToggleFavorite={ToggleFavorite}
-        deleteFun={deleteFun}
-      />
+      <div className="favorit d-flex flex-column w-100 p-4 border-gray mt-2 ">
+        <h5 className="p2">Favorit Contacts</h5>
+        <Contacts
+          contacts={contactList.filter((item) => item.isFavorit === true)}
+          setContactList={setContactList}
+          ToggleFavorite={ToggleFavorite}
+          deleteFun={deleteFun}
+        />
+      </div>
+      <div className="favorit d-flex flex-column w-100 p-4 border-gray mt-2 ">
+        <h5 className="p2">Favorit Contacts</h5>
+        <Contacts
+          contacts={contactList.filter((item) => item.isFavorit !== true)}
+          setContactList={setContactList}
+          ToggleFavorite={ToggleFavorite}
+          deleteFun={deleteFun}
+        />
+      </div>
     </div>
   );
 };
