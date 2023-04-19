@@ -1,7 +1,13 @@
 import React from "react";
 import FavoriteBtn from "./FavoriteBtn";
 
-const Contacts = ({ contacts, setContactList, ToggleFavorite, deleteFun }) => {
+const Contacts = ({
+  contacts,
+  ToggleFavorite,
+  deleteFun,
+  setEdit,
+  setSelectId,
+}) => {
   return (
     <div className="d-flex flex-column border-gray">
       {contacts.map((item) => (
@@ -29,7 +35,12 @@ const Contacts = ({ contacts, setContactList, ToggleFavorite, deleteFun }) => {
               ToggleFavorite={ToggleFavorite}
             />
             <div className="d-flex">
-              <button className="btn btn-primary mx-2" onClick={() => {}}>
+              <button
+                className="btn btn-primary mx-2"
+                onClick={() => {
+                  setSelectId(item.id);
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"

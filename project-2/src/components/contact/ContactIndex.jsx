@@ -3,6 +3,7 @@ import AddContact from "./AddContact";
 import Contacts from "./Contacts";
 import AddRandomContact from "./AddRandom";
 import RemoveAllContacts from "./RemoveAllContacts";
+import UpdateContact from "./updateContact";
 
 const ContactIndex = () => {
   const [contactList, setContactList] = useState([
@@ -41,24 +42,52 @@ const ContactIndex = () => {
     setContactList(new_update);
   };
   const AddRandom = (NC) => {
-  
     let lastId = 0;
     if (contactList.length === 0) {
       lastId = 1;
     } else {
       lastId = contactList.reverse()[0].id;
     }
-    const newContact = { name:NC.name, email:NC.email, phone:NC.phone, isFavorite: false, id: lastId };
+    const newContact = {
+      name: NC.name,
+      email: NC.email,
+      phone: NC.phone,
+      isFavorite: false,
+      id: lastId,
+    };
     setContactList(contactList.concat(newContact));
-  
-};
+  };
+  const updateContact = (contact) => {
+    const new_update = contactList.map((item) => {
+      return item.id === selectId
+        ? {
+            ...item,
+            isFavorit: item.isFavorit,
+            name: contact.name,
+            phone: contact.phone,
+            email: contact.email,
+          }
+        : item;
+    });
+    setContactList(new_update);
+  };
+  const [selectId, setSelectId] = useState();
   return (
     <div className="container  box-content d-flex flex-column text-white">
       <div className="d-flex  gap-4 mb-3 w-100">
         <AddRandomContact AddRandom={AddRandom} />
         <RemoveAllContacts setContactList={setContactList} />
       </div>
-      <AddContact contactList={contactList} setContactList={setContactList} />
+      {selectId > 0 ? (
+        <UpdateContact
+          updateContact={updateContact}
+          setSelectId={setSelectId}
+          contact={contactList.filter((item) => item.id === selectId)}
+        />
+      ) : (
+        <AddContact contactList={contactList} setContactList={setContactList} />
+      )}
+
       <div className="favorit d-flex flex-column w-100 p-4 border-gray mt-2 ">
         <h5 className="p2">Favorit Contacts</h5>
         <Contacts
@@ -66,6 +95,7 @@ const ContactIndex = () => {
           setContactList={setContactList}
           ToggleFavorite={ToggleFavorite}
           deleteFun={deleteFun}
+          setSelectId={setSelectId}
         />
       </div>
       <div className="favorit d-flex flex-column w-100 p-4 border-gray mt-2 ">
@@ -75,6 +105,7 @@ const ContactIndex = () => {
           setContactList={setContactList}
           ToggleFavorite={ToggleFavorite}
           deleteFun={deleteFun}
+          setSelectId={setSelectId}
         />
       </div>
     </div>
