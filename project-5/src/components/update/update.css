@@ -47,13 +47,13 @@ form {
   margin-top: 5px;
 }
 
-.profilePic{
+.profilePic {
   margin-top: 10px;
   display: flex;
   align-items: center;
 }
 
-.change{
+.change {
   margin-left: 10px;
   font-weight: 500;
   font-size: 13px;
@@ -63,7 +63,7 @@ form {
 .updateButton {
   margin-top: 10px;
   border: none;
-  padding: 5px  10px;
+  padding: 5px 10px;
   background-color: rgb(97, 161, 161);
   color: white;
   border-radius: 10px;
@@ -71,19 +71,20 @@ form {
   font-weight: 500;
 }
 
-.updateButton:disabled{
+.updateButton:disabled {
   cursor: not-allowed;
   background-color: rgb(136, 168, 168);
 }
 
-.error{
+.error {
   color: red;
   font-size: 14px;
   margin-left: 20px;
 }
 
-.success{
+.success {
   color: green;
   font-size: 14px;
   margin-left: 20px;
 }
+ 

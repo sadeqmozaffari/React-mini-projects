@@ -1,0 +1,35 @@
+.flex-column {
+  margin: 0 auto;
+  padding: 10px;
+  align-items: center;
+  border: 1px solid gray;
+}
+.flex-column-form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.d-flex-row {
+  display: flex;
+  gap: 10px;
+}
+.flex-btn {
+  display: flex;
+  align-items: end;
+}
+.btn-submit {
+  height: 30px;
+}
+.input-form {
+  padding: 5px 10px;
+}
+.mt-4 {
+  margin-top: 15px;
+}
+.flex-row-info {
+  display: grid;
+  grid-template-columns: auto auto 150px;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid gray;
+}
